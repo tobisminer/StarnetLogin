@@ -1,7 +1,7 @@
-class TokenBody {
+class LoginBody {
   ApiLoginForm? apiLoginForm;
 
-  TokenBody({this.apiLoginForm});
+  LoginBody({this.apiLoginForm});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();

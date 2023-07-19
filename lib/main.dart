@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:starnet_login/TokenBodyReq.dart';
-
+import 'package:starnet_login/LoginBody.dart';
+import 'package:starnet_login/TokenBody.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,40 +37,26 @@ class _MyFormState extends State<MyForm> {
     final String username = _userController.text;
     final String password = _passwordController.text;
     final String token = await getToken(username, password);
+    print(token);
 
   }
   Future<String> getToken(String username, String password) async{
-    TokenBody body = TokenBody(apiLoginForm: ApiLoginForm(username: username, password: password, attr: Attr(androidOsVersion: "9.1", appTechnikVersion: "1.23", imei: "1246543365434")));
+    LoginBody body = LoginBody(apiLoginForm: ApiLoginForm(username: username, password: password, attr: Attr(androidOsVersion: "9.1", appTechnikVersion: "1.23", imei: "1246543365434")));
     var jsonBody = jsonEncode(body.toJson());
     Uri? url = Uri.tryParse("${domain}api-token/create");
 
     http.Request request = http.Request("post", url!);
-    request.headers.clear();
-    request.headers.addAll({"content-type":"application/json; charset=utf-8"});
     request.body = jsonBody;
-    var letsGo = await request.send();
-    print(request);
-    print(request.body);
-    print(letsGo.statusCode);
+    request.headers.clear();
+    request.headers.addAll({
+      "content-type":"application/json",
+      "accept":"application/stis+json;version=1",});
 
+    var response = await request.send();
+    var decodedResponse = await  http.Response.fromStream(response);
+    var tokenBody = TokenBody.fromJson(jsonDecode(decodedResponse.body));
 
-
-      /* {
-      if (response.statusCode == 200) {
-        print(response.body);
-        return response.body;
-      } else {
-        print(response.statusCode);
-        print(response.body);
-        return "";
-      }
-    }).catchError((error) {
-      print(error);
-      return "";
-    });*/
-
-
-    return "";
+    return tokenBody.token!;
   }
 
   @override
