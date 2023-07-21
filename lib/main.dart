@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:starnet_login/LoginBody.dart';
-import 'package:starnet_login/TokenBody.dart';
+import 'package:starnet_login/login_body.dart';
+import 'package:starnet_login/token_body.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,7 +53,7 @@ class _MyFormState extends State<MyForm> {
       "accept":"application/stis+json;version=1",});
 
     var response = await request.send();
-    var decodedResponse = await  http.Response.fromStream(response);
+    var decodedResponse = await http.Response.fromStream(response);
     var tokenBody = TokenBody.fromJson(jsonDecode(decodedResponse.body));
 
     return tokenBody.token!;
