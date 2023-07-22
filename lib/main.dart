@@ -30,11 +30,23 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() async {
     final String username = _userController.text;
     final String password = _passwordController.text;
-    final String? token = await getToken(username, password);
-    setState(() {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomeScreen(token: token)));
-    });
+
+    try {
+      final String? token = await getToken(username, password);
+      setState(() {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => HomeScreen(token: token)));
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.red,
+            duration: const Duration(seconds: 5),
+            content: Text(e.toString()),
+          )
+      );
+    }
+
   }
 
   @override

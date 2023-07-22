@@ -19,6 +19,10 @@ Future<String?> getToken(String username, String password) async{
     "accept":"application/stis+json;version=1",});
 
   var response = await request.send();
+  if(response.statusCode != 200){
+    throw Exception("Neplatné přihlašovací údaje.");
+  }
+
   var decodedResponse = await http.Response.fromStream(response);
   var tokenBody = TokenBody.fromJson(jsonDecode(decodedResponse.body));
 
