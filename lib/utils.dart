@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:starnet_login/JsonObjects/login_body.dart';
-import 'package:starnet_login/JsonObjects/token_body.dart';
+import 'package:starnet_login/JsonObject/login_body.dart';
+import 'package:starnet_login/JsonObject/token_body.dart';
 
 const String domain = "stis.starnet.cz";
 
@@ -14,7 +14,7 @@ Future<String?> getToken(String username, String password) async {
     password: password,
   ));
   var jsonBody = jsonEncode(body.toJson());
-  Uri? url = Uri.tryParse("https://${domain}/api-token/create");
+  Uri? url = Uri.tryParse("https://$domain/api-token/create");
 
   http.Request request = http.Request("post", url!);
   request.body = jsonBody;
@@ -39,9 +39,8 @@ void showErrorToUser(e, context) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: Container(
         decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(16)),
-          color: Colors.red,
-        ),
+            borderRadius: BorderRadius.all(Radius.circular(16)),
+            color: Colors.red),
         padding: const EdgeInsets.all(16.0),
         child: Text(e.toString())),
     behavior: SnackBarBehavior.floating,
