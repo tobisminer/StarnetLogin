@@ -10,9 +10,9 @@ const String domain = "stis.starnet.cz";
 Future<String?> getToken(String username, String password) async {
   LoginBody body = LoginBody(
       apiLoginForm: ApiLoginForm(
-          username: username,
-          password: password,
-          ));
+    username: username,
+    password: password,
+  ));
   var jsonBody = jsonEncode(body.toJson());
   Uri? url = Uri.tryParse("https://${domain}/api-token/create");
 
