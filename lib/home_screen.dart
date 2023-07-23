@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: SizedBox(
-          width: 400,
+          width: MediaQuery.of(context).size.width * 0.8,
           child: Card(
             child: Column(
               children: [
