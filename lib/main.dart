@@ -121,14 +121,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: loginPassword,
                   ),
                 )),
-            ElevatedButton(
-                onPressed: () => _login(),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32.0),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: ElevatedButton(
+                  onPressed: () => _login(),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32.0),
+                    ),
                   ),
-                ),
-                child: const Text(loginButton))
+                  child: const Text(loginButton)),
+            )
           ]),
         ),
       ),

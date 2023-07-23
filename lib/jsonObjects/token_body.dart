@@ -6,5 +6,4 @@ class TokenBody {
   TokenBody.fromJson(Map<String, dynamic> json) {
     token = json['token'];
   }
-
 }

@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:starnet_login/login_body.dart';
-import 'package:starnet_login/token_body.dart';
+import 'package:starnet_login/JsonObjects/login_body.dart';
+import 'package:starnet_login/JsonObjects/token_body.dart';
 
 const String domain = "stis.starnet.cz";
 
