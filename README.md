@@ -1,3 +1,3 @@
 # Starnet STIS
 
-Simple login app, nothing more nothing less. Just login in.
+Simple login app, nothing more nothing less. Just log in.
