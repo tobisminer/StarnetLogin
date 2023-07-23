@@ -107,16 +107,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(16.0),
                     ),
                     prefixIcon: const Icon(Icons.fingerprint),
-                    suffix: IconButton(
-                        padding: const EdgeInsets.only(top: 25),
-                        onPressed: () {
-                          setState(() {
-                            hidePassword = !hidePassword;
-                          });
-                        },
-                        icon: Icon(hidePassword
-                            ? Icons.remove_red_eye
-                            : Icons.remove_red_eye_outlined)),
+                    suffix: Transform.translate(
+                        offset: const Offset(0.0, 5.0),
+                        child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                hidePassword = !hidePassword;
+                              });
+                            },
+                            icon: Icon(hidePassword
+                                ? Icons.remove_red_eye
+                                : Icons.remove_red_eye_outlined))),
                     labelText: loginPassword,
                   ),
                 )),
